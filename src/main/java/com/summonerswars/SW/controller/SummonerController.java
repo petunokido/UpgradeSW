@@ -11,6 +11,8 @@ import java.util.List;
 
 @RestController
 public class SummonerController {
+
+    //AutoWire with summonerService
     private final SummonerService summonerService;
 
     public SummonerController(SummonerService summonerService) {
@@ -53,8 +55,8 @@ public class SummonerController {
                 .tier(summonerRequestRQ.getTier())
                 .name(summonerRequestRQ.getName())
                 .build();
-        summonerService.save(newSummoner);    //Connection to SkillService method
-        SummonersReturnResponse summonersReturnResponse = new SummonersReturnResponse(); //Response to the user with the Skill data applied previously
+        summonerService.save(newSummoner);    //Connection to SummonerService method
+        SummonersReturnResponse summonersReturnResponse = new SummonersReturnResponse(); //Response to the user with the Summoner data applied previously
         summonersReturnResponse.setId(newSummoner.getId());
         summonersReturnResponse.setName(newSummoner.getName());
         summonersReturnResponse.setTier(newSummoner.getTier());
@@ -64,8 +66,12 @@ public class SummonerController {
 
     //Update parameters on Summoners
     @PutMapping(value = "/updateSummoners/{id}", consumes = "application/json", produces = "application/json")
+    //Class to request the body from Summoner RequestRQ with the parameters to fullfill and Return the response parameters
     public SummonersReturnResponse updateSummoners(@PathVariable(value = "id") Long id, @RequestBody SummonerRequestRQ summonerRequestRQ) {
-        Summoner summoner = summonerService.update(id, summonerRequestRQ.getName(), summonerRequestRQ.getTier());
+        Summoner summoner = summonerService.update(
+                        id,
+                        summonerRequestRQ.getName(),
+                        summonerRequestRQ.getTier());//Connection to SummonerService method created
 
 
         return new SummonersReturnResponse(

@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
+//Request Class with the Return attributes for Summoner
 public class SummonersReturnResponse {
     private Long id;
 

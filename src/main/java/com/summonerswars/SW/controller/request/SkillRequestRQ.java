@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+//Request Class with the Request atributes for skill
 public class SkillRequestRQ {
     private String name;
     private String active;

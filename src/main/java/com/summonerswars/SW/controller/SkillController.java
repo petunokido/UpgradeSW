@@ -50,14 +50,14 @@ public class SkillController {
 
     //Create a new Skill
     @PostMapping(value = "/skills/{id}", consumes = "application/json", produces = "application/json")
-
-    public SkillReturnResponse addSkill(@RequestBody SkillRequestRQ skillRequestRQ, @PathVariable(value = "id") Long id) //Class to request the body from Skill RequestRQ with the parameters to fullfill
+    //Class to request the body from Skill RequestRQ with the parameters to fullfill and Return the response parameters
+    public SkillReturnResponse addSkill(@RequestBody SkillRequestRQ skillRequestRQ, @PathVariable(value = "id") Long id)
     {
         Skill newSkill = Skill.builder()        //Method to get the parameters
                 .name(skillRequestRQ.getName())
                 .active(skillRequestRQ.getActive())
                 .build();
-        skillService.create(newSkill, id); //Connection to SkillService method
+        skillService.create(newSkill, id); //Connection to SkillService method created
         SkillReturnResponse skillReturnResponse = new SkillReturnResponse();//Response to the user with the Skill data applied previously
         skillReturnResponse.setId(newSkill.getId());
         skillReturnResponse.setName(newSkill.getName());
@@ -67,8 +67,9 @@ public class SkillController {
 
     //Update Skill
     @PutMapping(value = "/skills/{id}")
+    //Class to request the body from Skill RequestRQ with the parameters to fullfill and Return the response parameters
     public SkillReturnResponse updateSkill(@PathVariable(value = "id") Long id, @RequestBody SkillRequestRQ skillRequestRQ) {
-        Skill skill = skillService.update(id, skillRequestRQ.getName(), skillRequestRQ.getActive());
+        Skill skill = skillService.update(id, skillRequestRQ.getName(), skillRequestRQ.getActive()); //Connection to SkillService method created
 
         return new SkillReturnResponse(
                 skill.getId(),
@@ -77,7 +78,7 @@ public class SkillController {
                 skill.getSummoner().getId()
         );
     }
-
+    //Delete Skill
     @DeleteMapping(value = "/skills/{id}")
     public void deleteSkill(@PathVariable(value = "id") Long id) {
         skillService.deleteById(id);

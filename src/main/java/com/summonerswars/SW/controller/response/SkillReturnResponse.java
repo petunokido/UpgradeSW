@@ -7,6 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
+//Request Class with the Return attributes for Skill
 public class SkillReturnResponse {
 
     private Long id;

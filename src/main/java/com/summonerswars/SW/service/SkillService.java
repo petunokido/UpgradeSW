@@ -29,14 +29,15 @@ public class SkillService {
         return skillRepository.save(newSkill);
     }
 
-
+    //Method to find a skill by id
     public Skill findById(Long id) {
         return skillRepository.findById(id).orElseThrow(SkillNotFound::new); //Return Skill with matching id while verifying if id exists
     }
-
+    //Method to create skill
     public Skill create(Skill newSkill, Long id) {
+        //Find if Summoner exists by id if not throw error
         Summoner summoner = summonerRepository.findById(id).orElseThrow(SummonerNotFound::new);
-
+        //if condition to limit nr of skills add to the champion
         if(summoner.getSkill().size()<4) {
             newSkill.setSummoner(summoner);
             skillRepository.save(newSkill);
@@ -45,7 +46,7 @@ public class SkillService {
         else throw new SummonerNotFound("Summoner has max skills");
     }
 
-
+    //Method to update skill
     public Skill update(Long id, String name, String active) {
         Skill skill = this.findById(id); //Get Skill with matching id
         skill.setId(id);
@@ -54,7 +55,7 @@ public class SkillService {
 
         return skillRepository.save(skill);
     }
-
+    //delete a Skill
     public void deleteById(Long id) {
         this.findById(id); //Check if there is a skill with matching id
         skillRepository.deleteById(id);

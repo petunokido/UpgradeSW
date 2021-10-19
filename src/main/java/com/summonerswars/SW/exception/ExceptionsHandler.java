@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 
 @RestControllerAdvice
+
+//Classes of Exceptions for Skill and Summoners
 public class ExceptionsHandler {
     @ExceptionHandler({SummonerNotFound.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)

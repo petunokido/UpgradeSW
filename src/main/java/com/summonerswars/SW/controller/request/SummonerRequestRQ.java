@@ -11,7 +11,7 @@ import javax.persistence.Enumerated;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+//Request Class with the Request attributes for summoner
 public class SummonerRequestRQ {
     private String name;
 
